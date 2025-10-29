@@ -65,8 +65,6 @@ echo ${OUTPUTSTRING} > /tmp/assignment4-result.txt
 # remove temporary directories
 rm -rf /tmp/aeld-data
 
-/tmp/assignment4-result.txt
-
 set +e
 echo ${OUTPUTSTRING} | grep "${MATCHSTR}"
 if [ $? -eq 0 ]; then
