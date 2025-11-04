@@ -184,7 +184,10 @@ int main(int argc, char *argv[]) {
 
         ssize_t bytes_received;
         while ((bytes_received = recv(CLIENT_FD, buffer, sizeof(buffer), 0)) > 0) {
-            write(FILE_FD, buffer, bytes_received);
+            if (write(FILE_FD, buffer, bytes_received) < 0) {
+                syslog(LOG_ERR, "Error: Failed to write to a file\n");
+                return -1;
+            }
             if (buffer[bytes_received - 1] == '\n') {
                 break;
             }
